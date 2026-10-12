@@ -1,0 +1,21 @@
+flowchart TD
+    subgraph Proposed["Proposed Pipeline (With Real Agents)"]
+        A[discover_providers.py --mode all] -->|discovery.json| B[AGENT:Provider × N]
+        B -->|provider-*.json| C[AGENT:Investigation]
+        C -->|ranking.json + qualitative_report.md| D[AGENT:Placement]
+        D -->|placement.json + rationale.md| E[AGENT:Tester]
+        E -->|verification.json| F[AGENT:Applier]
+        F -->|config.yaml| G[hermes config check]
+        
+        H[models.dev cache] -.-> A
+        H -.-> C
+        I[Public catalogs] -.-> A
+        J[Community pulse] -.-> C
+        K[Benchmarks] -.-> C
+        L[Use-case profile] -.-> D
+    end
+    
+    style C fill:#9f6,stroke:#333
+    style D fill:#9f6,stroke:#333
+    style E fill:#6f9,stroke:#333
+    style F fill:#69f,stroke:#333

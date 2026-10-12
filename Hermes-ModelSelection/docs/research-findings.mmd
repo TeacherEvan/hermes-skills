@@ -1,0 +1,16 @@
+flowchart LR
+    subgraph Current["Current Discovery (credentialed only)"]
+        C1[Hermes Auth Store] --> C2[list_authenticated_providers]
+    end
+    
+    subgraph Proposed["Proposed Discovery (all sources)"]
+        P1[OpenRouter Public API] --> P4[Merge & Dedupe]
+        P2[HF Router Public API] --> P4
+        P3[Opencode Catalog] --> P4
+        P5[models.dev Direct] --> P4
+        P6[Together/Fireworks/Groq/Cerebras] --> P4
+        P7[Community Lists] --> P4
+        P4 --> P8[discovery.json + uncredentialed_recommendations]
+    end
+    
+    C2 --> P8

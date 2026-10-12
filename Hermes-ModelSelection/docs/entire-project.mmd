@@ -1,0 +1,39 @@
+flowchart TD
+    subgraph Skill["Hermes-ModelSelection Skill"]
+        S1[SKILL.md] --> S2[Architecture Diagram]
+        S1 --> S3[Scripts: 7]
+        S1 --> S4[References: 2]
+        S3 --> S5[discover_providers.py]
+        S3 --> S6[list_provider_models.py]
+        S3 --> S7[rank_models.py]
+        S3 --> S8[place_models.py]
+        S3 --> S9[test_models_live.py]
+        S3 --> S10[test_place_models.py]
+        S3 --> S11[run_pipeline.sh]
+    end
+    
+    subgraph Runtime["Runtime Artifacts"]
+        R1[discovery.json]
+        R2[provider-*.json]
+        R3[ranking.json]
+        R4[placement.json]
+        R5[verification.json]
+    end
+    
+    subgraph External["External Dependencies"]
+        E1[Hermes CLI]
+        E2[hermes_cli.model_switch_providers]
+        E3[models_dev_cache.json]
+        E4[Provider APIs]
+    end
+    
+    S5 --> R1
+    S6 --> R2
+    S7 --> R3
+    S8 --> R4
+    S9 --> R5
+    S5 --> E2
+    S5 --> E3
+    S6 --> E3
+    S7 --> E3
+    S9 --> E1

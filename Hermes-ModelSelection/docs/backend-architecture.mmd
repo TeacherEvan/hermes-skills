@@ -1,0 +1,11 @@
+flowchart TD
+    A[discover_providers.py] -->|discovery.json| B[list_provider_models.py × N]
+    B -->|provider-*.json| C[rank_models.py]
+    C -->|ranking.json| D[place_models.py]
+    D -->|placement.json| E[test_models_live.py]
+    E -->|verification.json| F[hermes config set]
+    
+    style A fill:#f9f,stroke:#333
+    style C fill:#f96,stroke:#333
+    style D fill:#f96,stroke:#333
+    style E fill:#6f9,stroke:#333
